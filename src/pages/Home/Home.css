@@ -1,3 +1,41 @@
 .Home-background {
    background-image: url("../../assets/images/Pokemon.png");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+   width: 100vw;
+   height: 100vh;
+   position: fixed;
+}
+
+.Home-logo {
+   width: 40%;
+}
+
+.Home-subtitle{
+   margin: auto;
+   margin-top: 3vh;
+   padding: 10px 0 10px 0;
+   font-family: 'Press Start 2P', cursive;
+   font-size: 50px;
+   color: white;
+   background-color: rgba(0, 0, 0, 0.8);
+   text-align: center;
+   width: 50%;
+}
+
+.beer {
+   height: 80vh;
+   position: absolute;
+   left: 5%;
+   bottom: -20%;
+   transform: rotateZ(30deg) scaleX(-1)
+}
+
+.beer1 {
+   height: 80vh;
+   position: absolute;
+   right: 5%;
+   bottom: -20%;
+   transform: rotateZ(-30deg) 
 }

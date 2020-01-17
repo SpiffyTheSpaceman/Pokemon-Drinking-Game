@@ -1,0 +1,90 @@
+div.waves{
+   width: 100%;
+   bottom: 0;
+   /*height: 100%;*/
+   position: absolute;
+   z-index: 5;
+   opacity: 0.5;
+ }
+ 
+ svg{
+   position: absolute;
+   width: 100%;
+   bottom: 0;
+   left: 0;
+   animation-name: move-left;
+   animation-duration: 4s;
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+ }
+ 
+ @keyframes example {
+   0%   {
+     left:0px;
+     top:0px;}
+   
+   50%  {
+     left:-2000px;
+     top:200px;}
+   
+   100% {
+     left:0px; 
+     top:0px;}
+ }
+ 
+ @-webkit-keyframes animateBubble {
+   0% {
+       margin-top: 1000px;
+   }
+   100% {
+       margin-top: -100%;
+   }
+}
+
+@-moz-keyframes animateBubble {
+   0% {
+       margin-top: 1000px;
+   }
+   100% {
+       margin-top: -100%;
+   }
+}
+
+@keyframes animateBubble {
+   0% {
+       margin-top: 1000px;
+   }
+   100% {
+       margin-top: -100%;
+   }
+}
+
+@-webkit-keyframes sideWays { 
+   0% { 
+       margin-left:0px;
+   }
+   100% { 
+       margin-left:50px;
+   }
+}
+
+@-moz-keyframes sideWays { 
+   0% { 
+       margin-left:0px;
+   }
+   100% { 
+       margin-left:50px;
+   }
+}
+
+@keyframes sideWays { 
+   0% { 
+       margin-left:0px;
+   }
+   100% { 
+       margin-left:50px;
+   }
+}
+
+/* ANIMATIONS */
+

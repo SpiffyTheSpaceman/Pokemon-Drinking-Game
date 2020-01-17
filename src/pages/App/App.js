@@ -9,7 +9,7 @@ import './reflex.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="">
         <nav></nav>
       </header>
       <Switch>
@@ -19,7 +19,7 @@ function App() {
           />
         } />
 
-        
+
       </Switch>
     </div>
   );

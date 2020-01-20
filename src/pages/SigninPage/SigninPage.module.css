@@ -1,0 +1,58 @@
+.modalContainer {
+   width: 100vw;
+   height: 100vh;
+   position: fixed;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   background-color: transparent;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   z-index: -3;
+}
+
+.modalBackground {
+   display: none;
+   background-color: transparent;
+   opacity: 0.4;
+   position: fixed;
+   z-index: 1;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+}
+
+.modalBackground.backgroundActive {
+   background-color: black;
+   display: block;
+}
+
+.modalCardContainer {
+   background-color: rgb(254, 202, 48);
+   border-width: 10px;
+   border-style: solid;
+   border-color: rgb(59, 97, 168);
+   border-radius: 10%;
+   padding: 5% 5% 5% 5%;
+   width: 60vw;
+   height: 50vh;
+   transition: transform 0.3s ease;
+   transform: translateY(-100vh);
+   z-index: 2;
+}
+
+.modalCardContainer.modalOpen {
+   transform: translateY(0); 
+}
+
+
+.modalCardContainer h1 {
+   font-size: 30px;
+}
+
+
+

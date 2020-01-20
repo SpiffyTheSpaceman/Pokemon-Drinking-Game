@@ -1,4 +1,4 @@
-.Signup-container {
+.modalContainer {
    width: 100vw;
    height: 100vh;
    position: fixed;
@@ -14,7 +14,7 @@
    z-index: -3;
 }
 
-.Signup-background {
+.modalBackground {
    display: none;
    background-color: transparent;
    opacity: 0.4;
@@ -26,24 +26,33 @@
    left: 0;
 }
 
-.Signup-background.backgroundActive {
+.modalBackground.backgroundActive {
    background-color: black;
    display: block;
 }
 
-.Signup-card-container {
-   background-color: silver;
+.modalCardContainer {
+   background-color: rgb(254, 202, 48);
+   border-width: 10px;
+   border-style: solid;
+   border-color: rgb(47, 118, 184);
    border-radius: 10%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+   padding: 5% 5% 5% 5%;
    width: 60vw;
-   height: 70vh;
+   height: 50vh;
    transition: transform 0.3s ease;
    transform: translateY(-100vh);
    z-index: 2;
 }
 
-.Signup-card-container.modalOpen {
+.modalCardContainer.modalOpen {
    transform: translateY(0); 
 }
+
+
+.modalCardContainer h1 {
+   font-size: 30px;
+}
+
+
+

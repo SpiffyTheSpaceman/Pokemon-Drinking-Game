@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import styles from './SignupPage.module.css';
+import styles from './SigninPage.module.css';
 import classNames from 'classnames';
 
 
-export default function SignupPage(props) {
-
+export default function SigninPage(props) {
 
    
    const [modalTransitioning, setModalTransitioning] = useState(false);
@@ -38,7 +37,7 @@ export default function SignupPage(props) {
             [styles.modalOpen]: modalOpen,
          })} >
             <h1>
-               Pokemon Trainer<br />Sign Up
+               Pokemon Trainer<br />Sign In
             </h1>
             <form 
             className="form"
@@ -55,7 +54,6 @@ export default function SignupPage(props) {
                      <td><input /></td>
                   </tr>
                </table>
-               <button className="submit">Sign Up</button>
             </form>
          </div>
 

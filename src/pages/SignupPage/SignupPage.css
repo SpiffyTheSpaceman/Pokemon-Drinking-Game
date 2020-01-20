@@ -1,0 +1,49 @@
+.Signup-container {
+   width: 100vw;
+   height: 100vh;
+   position: fixed;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   background-color: transparent;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   z-index: -3;
+}
+
+.Signup-background {
+   display: none;
+   background-color: transparent;
+   opacity: 0.4;
+   position: fixed;
+   z-index: 1;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+}
+
+.Signup-background.backgroundActive {
+   background-color: black;
+   display: block;
+}
+
+.Signup-card-container {
+   background-color: silver;
+   border-radius: 10%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 60vw;
+   height: 70vh;
+   transition: transform 0.3s ease;
+   transform: translateY(-100vh);
+   z-index: 2;
+}
+
+.Signup-card-container.modalOpen {
+   transform: translateY(0); 
+}

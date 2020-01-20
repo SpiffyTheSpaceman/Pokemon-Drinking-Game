@@ -3,7 +3,7 @@ div.waves{
    bottom: 0;
    /*height: 100%;*/
    position: absolute;
-   z-index: 5;
+   z-index: 3;
    opacity: 0.5;
    pointer-events: none
  }

@@ -5,8 +5,6 @@ import pokeball from '../../assets/images/Pokeball.svg';
 
 
 export default function SignupPage(props) {
-
-
    
    const [modalTransitioning, setModalTransitioning] = useState(false);
    const [modalOpen, setModalOpen] = useState(false);   
@@ -28,6 +26,14 @@ export default function SignupPage(props) {
       return;
    }, [props.active])
 
+   function handleChange(e, changeState) {
+      changeState(e.target.value);
+      console.log('email', props.signupEmail);
+      console.log('name', props.signupName);
+      console.log('password', props.signupPassword);
+      console.log('password2', props.signupPassword2);
+   }
+
    return(
       <div 
       style={{zIndex: (modalTransitioning || modalOpen) ? 11 : -3}} 
@@ -42,24 +48,58 @@ export default function SignupPage(props) {
                Pokemon Trainer<br />Sign Up
             </h1>
             <form 
-            className="form"
+               className="form"
+               onSubmit={props.handleSubmit}
             >
                <table 
                className="form-input-container"
                >
-                  <tr>
-                     <td className="min">Email:</td>
-                     <td><input /></td>
-                  </tr>
-                  <tr>
-                     <td className="min">Password:</td>
-                     <td><input /></td>
-                  </tr>
+                  <tbody>
+                     <tr>
+                        <td className="min">Email:</td>
+                        <td><input 
+                           type="text" 
+                           placeholder="Email*" 
+                           value={props.signupEmail} 
+                           name="email" 
+                           onChange={ (e) => handleChange(e, props.handleEmailChange)}
+                        /></td>
+                     </tr>
+                     <tr>
+                        <td className="min">Name:</td>
+                        <td><input 
+                           type="text" 
+                           placeholder="Name" 
+                           value={props.signupName} 
+                           name="name" 
+                           onChange={ (e) => handleChange(e, props.handleNameChange)}
+                        /></td>
+                     </tr>
+                     <tr>
+                        <td className="min">Password:</td>
+                        <td><input 
+                           type="password" 
+                           placeholder="Password*" 
+                           value={props.signupPassword} 
+                           name="password" 
+                           onChange={ (e) => handleChange(e, props.handlePasswordChange)}
+                        /></td>
+                     </tr>
+                     <tr>
+                        <td className="min">Confirm Password:</td>
+                        <td><input 
+                           type="password" 
+                           placeholder="Confirm Password*" 
+                           value={props.signupPassword2} 
+                           name="password2" 
+                           onChange={ (e) => handleChange(e, props.handlePassword2Change)}
+                        /></td>
+                     </tr>
+                  </tbody>
                </table>
                <button className={styles.submit}>
                   <img 
                   className="pokeball"
-                  objectFit="contain"
                   src={pokeball}
                   alt='pokeball'
                   />

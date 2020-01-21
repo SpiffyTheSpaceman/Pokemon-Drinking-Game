@@ -9,6 +9,14 @@ import './reflex.css';
 
 function App() {
 
+  const [signupEmail, setSignupEmail] = useState('');
+  const [signupName, setSignupName] = useState('');
+  const [signupPassword, setSignupPassword] = useState('');
+  const [signupPassword2, setSignupPassword2] = useState('');
+
+  const [signinEmail, setSigninEmail] = useState('');
+  const [signinPassword, setSigninPassword] = useState('');
+
   const [signupActive, setSignupActive] = useState(false);
   const [signinActive, setSigninActive] = useState(false);
 
@@ -33,12 +41,24 @@ function App() {
         </nav>
       </header>
       <SigninPage 
-      handleBackgroundClick={handleSigninClick}
+      signinEmail={signinEmail}
+      signinPassword={signinPassword}
       active={signinActive}
+      handleEmailChange={setSigninEmail}
+      handlePasswordChange={setSigninPassword}
+      handleBackgroundClick={handleSigninClick}
       />
-      <SignupPage 
-      handleBackgroundClick={handleSignupClick}
+      <SignupPage
+      signupEmail={signupEmail}
+      signupName={signupName}
+      signupPassword={signupPassword}
+      signupPassword2={signupPassword2}
       active={signupActive}
+      handleBackgroundClick={handleSignupClick}
+      handleEmailChange={setSignupEmail}
+      handleNameChange={setSignupName}
+      handlePasswordChange={setSignupPassword}
+      handlePassword2Change={setSignupPassword2}
       />
       <Switch>
         <Route exact path='/' render={(props) => 

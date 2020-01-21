@@ -27,6 +27,12 @@ export default function SigninPage(props) {
       return;
    }, [props.active])
 
+
+   function handleChange(e, changeState) {
+      changeState(e.target.value);
+   }
+
+
    return(
       <div 
       style={{zIndex: (modalTransitioning || modalOpen) ? 11 : -3}} 
@@ -42,23 +48,37 @@ export default function SigninPage(props) {
             </h1>
             <form 
             className="form"
+            onSubmit={props.handleSubmit}
             >
                <table 
                className="form-input-container"
                >
-                  <tr>
-                     <td className="min">Email:</td>
-                     <td><input /></td>
-                  </tr>
-                  <tr>
-                     <td className="min">Password:</td>
-                     <td><input /></td>
-                  </tr>
+                  <tbody>
+                     <tr>
+                        <td className="min">Email:</td>
+                        <td><input 
+                           type="text" 
+                           placeholder="Email" 
+                           value={props.signinEmail} 
+                           name="email" 
+                           onChange={ (e) => handleChange(e, props.handleEmailChange)}
+                        /></td>
+                     </tr>
+                     <tr>
+                        <td className="min">Password:</td>
+                        <td><input 
+                           type="password" 
+                           placeholder="Password" 
+                           value={props.signinPassword} 
+                           name="password" 
+                           onChange={ (e) => handleChange(e, props.handlePasswordChange)}
+                        /></td>
+                     </tr>
+                  </tbody>
                </table>
                <button className={styles.submit}>
                   <img 
                   className="pokeball"
-                  objectFit="contain"
                   src={pokeball}
                   alt='pokeball'
                   />

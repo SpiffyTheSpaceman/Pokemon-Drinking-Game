@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import muteIcon from '../../assets/images/volume_off.svg';
 import soundIcon from '../../assets/images/volume_up.svg';
 import './Audio.css';
@@ -7,10 +7,9 @@ import './Audio.css';
 
 const Sound = ({ 
   url = null, 
-  loop = true, 
-  volume = 1, 
   mute, 
-  handleMute 
+  handleMute,
+  volume, 
 }) => {
    
   const audioRef = useRef(null)
@@ -22,8 +21,6 @@ const Sound = ({
    
    useEffect(() => {
          mute ? audioRef.current.pause() : audioRef.current.play();
-         audioRef.current.volume = volume;
-         audioRef.current.loop = loop;
       },
       [mute]
    );
@@ -36,6 +33,7 @@ const Sound = ({
         src={url} 
         autoPlay
         loop
+        volume={volume}
       />
       <button className="soundIcon" onClick={() => toggle()}>
         <img src={mute ? muteIcon : soundIcon} />

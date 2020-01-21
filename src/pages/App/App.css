@@ -4,10 +4,6 @@
 }
 
 
-input:focus {
-  outline: none;
-}
-
 .nav-header {
 
 }
@@ -102,6 +98,10 @@ td.min {
   text-align: start;
 }
 
-button:focus {
-  outline: none;
+.pokeball {
+  height: 100%;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
 }

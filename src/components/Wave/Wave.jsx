@@ -4,13 +4,13 @@ import './Wave.css';
 export default function Wave() {
    return(
 
-<div class="waves">
+<div className="waves">
     <svg width="100%" height="50vh" fill="none" version="1.1"
      xmlns="http://www.w3.org/2000/svg">
       <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#f28e1c" />
-        <stop offset="90%" stop-color="#e49123" />
-        <stop offset="100%" stop-color="#d87f1f" />
+        <stop offset="0%" stopColor="#f28e1c" />
+        <stop offset="90%" stopColor="#e49123" />
+        <stop offset="100%" stopColor="#d87f1f" />
       </linearGradient>
       <path 
         fill="url(#grad1)" 

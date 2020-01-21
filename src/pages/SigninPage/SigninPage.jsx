@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styles from './SigninPage.module.css';
 import classNames from 'classnames';
+import pokeball from '../../assets/images/Pokeball.svg'
 
 
 export default function SigninPage(props) {
@@ -54,6 +55,15 @@ export default function SigninPage(props) {
                      <td><input /></td>
                   </tr>
                </table>
+               <button className={styles.submit}>
+                  <img 
+                  className="pokeball"
+                  objectFit="contain"
+                  src={pokeball}
+                  alt='pokeball'
+                  />
+                  <span>Sign In</span>
+               </button>
             </form>
          </div>
 

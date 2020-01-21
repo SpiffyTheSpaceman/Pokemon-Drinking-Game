@@ -5,29 +5,48 @@
    background-position: center;
    width: 100vw;
    height: 100vh;
+   padding-top: 10vh;
    position: fixed;
+   top: 0;
+   user-select: none;
 }
 
 .Home-logo {
    width: 40%;
+   user-select: none;
 }
 
 .Home-subtitle {
-   margin: auto;
+   display: flex;
+   justify-content: center;
+   align-content: center;
+   align-items: center;
    margin-top: 3vh;
-   padding: 10px 0 10px 0;
    font-family: 'Press Start 2P', cursive;
    font-size: 50px;
    color: white;
-   background-color: rgba(0, 0, 0, 0.8);
    text-align: center;
-   width: 50%;
+}
+
+.Home-subtitle > p {
+   background-color: rgba(0, 0, 0, 0.8);
+   padding: 10px 10px 10px 10px;
+   min-width: 50%;
+   margin: 0;
 }
 
 .Home-audio {
    position: absolute;
+   margin-top: 10vh;
    top: 20px;
    left: 20px;
+   padding: 1%;
+   border-radius: 100%;
+   z-index: 12;
+}
+
+.Home-audio.Audio-active {
+   background: radial-gradient(circle at center, #f0f3f7 0, #f0f3f7 50%, transparent 70%);
 }
 
 .beer {
@@ -35,7 +54,9 @@
    position: absolute;
    left: 5%;
    bottom: -20%;
-   transform: rotateZ(30deg) scaleX(-1)
+   transform: rotateZ(30deg) scaleX(-1);
+   user-select: none;
+   z-index: 1;
 }
 
 .beer1 {
@@ -43,12 +64,19 @@
    position: absolute;
    right: 5%;
    bottom: -20%;
-   transform: rotateZ(-30deg) 
+   transform: rotateZ(-30deg);
+   user-select: none;
+   z-index: 1;
+}
+
+.home-button {
+   position: relative;
+   z-index: 3;
 }
 
 .pikachu {
    position: absolute;
-   z-index: 55;
+   z-index: 4;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -56,4 +84,9 @@
    width: 100vw;
    height: 100vh;
    pointer-events: none;
+   user-select: none;
+}
+
+img {
+   user-select: none;
 }

@@ -1,0 +1,123 @@
+.modalContainer {
+   width: 100vw;
+   height: 100vh;
+   position: fixed;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   background-color: transparent;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   z-index: -3;
+}
+
+.modalBackground {
+   display: none;
+   background-color: transparent;
+   opacity: 0.4;
+   position: fixed;
+   z-index: 1;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+}
+
+.modalBackground.backgroundActive {
+   background-color: black;
+   display: block;
+}
+
+.modalCardContainer {
+   background-color: rgb(254, 202, 48);
+   border-width: 10px;
+   border-style: solid;
+   border-color: rgb(59, 96, 167);
+   border-radius: 10%;
+   padding: 5% 5% 5% 5%;
+   width: 60vw;
+   height: 50vh;
+   transition: transform 0.3s ease;
+   transform: translateY(-100vh);
+   z-index: 2;
+   display: flex;
+   flex-direction: column;
+}
+
+.modalCardContainer.modalOpen {
+   transform: translateY(0); 
+}
+
+
+.modalCardContainer h1 {
+   font-size: 30px;
+   margin: 0;
+}
+
+.modalCardContainer .submit {
+   font-family: 'Press Start 2P', cursive;
+   margin: 10px 0 0 0;
+   padding: 10px;
+   border: none;
+   background: none;
+   height: 50px;
+   display: block;
+   background-color: rgb(59, 96, 167);
+   border-radius: 10px;
+   opacity: 0.7;
+}
+
+.modalCardContainer .submit:hover {
+   cursor: not-allowed;
+}
+
+
+
+.modalCardContainer .submit > span {
+   vertical-align: middle;
+}
+
+.submit.submitEnabled {
+   opacity: 1;
+}
+
+.submit.submitEnabled:hover {
+   cursor: pointer;
+}
+
+
+/* Pokeball shake */
+.modalCardContainer .submitEnabled:hover > img {
+   animation-name: ballshake;
+   animation-duration: 1000ms; /* or: Xms */
+   animation-iteration-count: infinite;
+   animation-direction: normal; /* or: normal */
+   animation-timing-function: linear; /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
+   animation-fill-mode: forwards; /* or: backwards, both, none */
+   animation-delay: 0; /* or: Xms */
+}
+
+@keyframes ballshake {
+   0%, 100% {
+      transform: rotateZ(0);
+   }
+   5% {
+      transform: rotateZ(-15deg);
+   }
+   15% {
+      transform: rotateZ(15deg);
+   }
+   25% {
+      transform: rotateZ(-15deg);
+   }
+   35% {
+      transform: rotateZ(15deg);
+   }
+   40% {
+      transform: rotateZ(0deg);
+   }
+
+}

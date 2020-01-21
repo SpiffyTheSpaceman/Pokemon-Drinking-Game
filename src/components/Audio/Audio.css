@@ -12,6 +12,7 @@
 
 .soundIcon:hover {
    cursor: pointer;
+   transform: scale(1.1);
 }
 
 .soundIcon:hover:active {

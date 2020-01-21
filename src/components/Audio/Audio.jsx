@@ -1,24 +1,39 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import muteIcon from '../../assets/images/volume_off.svg';
 import soundIcon from '../../assets/images/volume_up.svg';
 import './Audio.css';
 
 
 
-const Sound = ({ url = null , loop = true, volume = 1, autoplay = true }) => {
+function Sound ({ 
+  url = null, 
+  mute, 
+  handleMute,
+  volume,
+  autoplay,
+  loop,
+}) {
    
   const audioRef = useRef(null)
-  const [mute, setMute] = useState(false);
    
-  const toggle = () => setMute(!mute);
+  const toggle = () => {
+    handleMute();
+  }
+
    
    useEffect(() => {
          mute ? audioRef.current.pause() : audioRef.current.play();
-         audioRef.current.volume = volume;
-         audioRef.current.loop = loop;
+         return;
       },
       [mute]
    );
+
+   useEffect(() => {
+    audioRef.current.volume = volume;
+    audioRef.current.autoplay = autoplay;
+    audioRef.current.loop = loop;
+    return;
+  }, []);
    
 
   return (
@@ -26,10 +41,9 @@ const Sound = ({ url = null , loop = true, volume = 1, autoplay = true }) => {
       <audio 
         ref={audioRef} 
         src={url} 
-        autoPlay
       />
       <button className="soundIcon" onClick={() => toggle()}>
-        <img src={mute ? muteIcon : soundIcon} />
+        <img src={mute ? muteIcon : soundIcon} alt="" />
       </button>
     </div>
   );

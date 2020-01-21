@@ -1,38 +1,117 @@
 .App {
   text-align: center;
+  font-family: 'Press Start 2P', cursive;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.nav-header {
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  font-family: 'Press Start 2P', cursive;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8) 70%, rgba(0, 0, 0, 0) 100% );
+  transition: all 0.3s ease;
+  color: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10vh;
+  z-index: 2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-container:hover {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8) 90%, rgba(0, 0, 0, 0) 100% );
+}
+
+.nav-button {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.nav-button:hover {
+  /* transform: scale(1.1); */
+  background: linear-gradient(to bottom, rgba(254, 202, 48, 1), rgba(254, 202, 48, 1) 10%, transparent 10%, transparent 100% );
+}
+
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.flex-column-center {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  align-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+.flex-row-start {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.form-input-container {
+  width: 100%;
+}
+
+.form-input-container input {
+  height: 30px;
+  font-size: 15px;
+  width: 100%;
+}
+
+tr {
+  margin-bottom: 20px;
+}
+
+td.min {
+  width: 1%;
+  white-space: nowrap;
+  text-align: start;
+}
+
+.pokeball {
+  height: 100%;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+.button {
+  font-family: 'Press Start 2P', cursive;
+  padding: 10px;
+  border: none;
+  background: none;
+  display: block;
+  background-color: rgb(47, 118, 184);
+  border-radius: 10px;
 }

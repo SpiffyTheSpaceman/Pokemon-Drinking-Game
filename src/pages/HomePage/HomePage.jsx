@@ -47,6 +47,7 @@ export default function Home(props) {
                   src={Pikachu}
                   style={{ display: changingPage ? 'block' : 'none' }} 
                   draggable={false}
+                  alt="pikachu"
                />
             </div>
             <img src={Beer} className="beer" alt="" draggable={false} />

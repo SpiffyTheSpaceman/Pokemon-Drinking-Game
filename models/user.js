@@ -24,6 +24,13 @@ const userSchema = new Schema({
    timestamps: true
  });
 
+ userSchema.methods.comparePassword = function(tryPassword, cb) {
+   // this refers to the user model we are comparing in user.comparePasswords
+   // bcrypt.compare will compare the unencrypted password with the encrypted password in the database.
+   // NOTE: bcrypt's compare method is written as an asynchronous method, thus the necessity to provide a callback
+   bcrypt.compare(tryPassword, this.password, cb);
+ };
+
 
  //schema.set(option, value):
  //Schemas have a few configurable options which can be set directly.

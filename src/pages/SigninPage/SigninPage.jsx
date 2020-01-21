@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import styles from './SigninPage.module.css';
 import classNames from 'classnames';
-import pokeball from '../../assets/images/Pokeball.svg'
+import pokeball from '../../assets/images/Pokeball.svg';
+import userService from '../../utils/userService';
 
 
 export default function SigninPage(props) {
@@ -9,6 +10,8 @@ export default function SigninPage(props) {
    
    const [modalTransitioning, setModalTransitioning] = useState(false);
    const [modalOpen, setModalOpen] = useState(false);   
+
+   const [errorMessage, setErrorMessage] = useState('');
 
    useEffect(function() {
       if (props.active) {
@@ -37,8 +40,29 @@ export default function SigninPage(props) {
       return !(props.signinEmail && props.signinPassword);
    }
 
-   function handleSubmit(e) {
+   async function handleSubmit(e) {
       e.preventDefault();
+      const payload = {
+         email: props.signinEmail,
+         password: props.signinPassword,
+      }
+      setErrorMessage('');
+      try {
+        // Update to call login instead of signup
+        // Note: since userService.login returns a promise, we can use await.
+        await userService.login(payload);
+        
+         // Successfully signed up - deactivate modal.
+         props.handleActivate();
+         // Reset the states for all the fields since successful login.
+         props.handleEmailChange('');
+         props.handlePasswordChange('');
+         // All this does is in <App> it sets the user state by getting it via the userService.get function which will retrieve the token that was just set by sign up
+         props.handleSignupOrLogin();
+      } catch (err) {
+         // err is passed to us by userService.login when it throws error.
+        setErrorMessage(err.message);
+      }
    }
 
    return(
@@ -82,6 +106,9 @@ export default function SigninPage(props) {
                            onChange={ (e) => handleChange(e, props.handlePasswordChange)}
                         /></td>
                      </tr>
+                     <tr className={styles.error}>
+                        <td colSpan="2">{errorMessage}</td>
+                     </tr>
                   </tbody>
                </table>
                <button 
@@ -106,7 +133,7 @@ export default function SigninPage(props) {
                [styles.modalBackground]: true,
                [styles.backgroundActive]: props.active,
             })}
-            onClick={() => props.handleBackgroundClick()}
+            onClick={() => props.handleActivate()}
             >
          </div>
       </div>

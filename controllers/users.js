@@ -4,11 +4,12 @@ const User = require('../models/user');
 // The token is cryptographically signed by the server when it is created so that if the token is changed in any way, it is considered invalid.
 // The token is encoded, but not encrypted. It is encoded using a standard known as base64url encoding so that it can be easily serialized across the internet or even be included in a URL's querystring. It's easy to look at encoded data and think that its content cannot be read, but not true.
 const jwt = require('jsonwebtoken');
-
+//JWT String structure: 'HeaderEncoded.PayloadEncoded.SignatureEncoded'
 const SECRET = process.env.SECRET;
 
 module.exports = {
    signup,
+   login
  };
  
  async function signup(req, res) {
@@ -27,6 +28,28 @@ module.exports = {
    }
  }
 
+ async function login(req, res) {
+   try {
+      //Wait for the database to return with the user of specified email
+     const user = await User.findOne({email: req.body.email});
+     if (!user) return res.status(401).json({err: 'Email Incorrect'});
+     //NOTE: comparePasswords is a custom class method we added in the user Model.
+     user.comparePassword(req.body.password, (err, isMatch) => {
+       if (isMatch) {
+         const token = createJWT(user);
+         // NOTE: The signup method is transporting the token string to the client within an object (assigned to a key named token)
+         // Respond to the client with said object.
+         // NOTE2: normally we would end with a res.redirect or res.render in a regular express project with data attached on the callback argument. In this case, we just want to send back the data in json format.
+         res.json({token});
+       } else {
+          //Note: the try/catch only applies to the User.findOne. Thus, in the callback function, if the password does not match, we have to manually return an error.
+         return res.status(401).json({err: 'Password Incorrect'});
+       }
+     });
+   } catch (err) {
+     return res.status(401).json(err);
+   }
+ }
 
 
 

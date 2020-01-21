@@ -29,9 +29,17 @@ export default function SigninPage(props) {
 
 
    function handleChange(e, changeState) {
+      e.preventDefault();
       changeState(e.target.value);
    }
 
+   function isFormInvalid() {
+      return !(props.signinEmail && props.signinPassword);
+   }
+
+   function handleSubmit(e) {
+      e.preventDefault();
+   }
 
    return(
       <div 
@@ -48,7 +56,7 @@ export default function SigninPage(props) {
             </h1>
             <form 
             className="form"
-            onSubmit={props.handleSubmit}
+            onSubmit={handleSubmit}
             >
                <table 
                className="form-input-container"
@@ -76,7 +84,13 @@ export default function SigninPage(props) {
                      </tr>
                   </tbody>
                </table>
-               <button className={styles.submit}>
+               <button 
+                  className={classNames({
+                     [styles.submit]: true,
+                     [styles.submitEnabled]: !isFormInvalid(),
+                  })}
+                  disabled={isFormInvalid()}
+               >
                   <img 
                   className="pokeball"
                   src={pokeball}

@@ -67,10 +67,11 @@
    display: block;
    background-color: rgb(47, 118, 184);
    border-radius: 10px;
+   opacity: 0.7;
 }
 
 .modalCardContainer .submit:hover {
-   cursor: pointer;
+   cursor: not-allowed;
 }
 
 
@@ -79,10 +80,18 @@
    vertical-align: middle;
 }
 
+.submit.submitEnabled {
+   opacity: 1;
+}
+
+.submit.submitEnabled:hover {
+   cursor: pointer;
+}
+
 
 
 /* Pokeball shake */
-.modalCardContainer .submit:hover > img {
+.modalCardContainer .submitEnabled:hover > img {
    animation-name: ballshake;
    animation-duration: 1000ms; /* or: Xms */
    animation-iteration-count: infinite;

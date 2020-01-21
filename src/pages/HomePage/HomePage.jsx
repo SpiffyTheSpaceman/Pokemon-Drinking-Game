@@ -34,6 +34,8 @@ export default function Home(props) {
          <div className={`Home-audio ${!mute && 'Audio-active'}`}>
             <Audio 
                url={AudioUrl} 
+               autoplay={true}
+               loop={true}
                volume={0.5}
                mute={mute}
                handleMute={handleMute}

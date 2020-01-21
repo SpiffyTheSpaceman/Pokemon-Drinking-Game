@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styles from './SignupPage.module.css';
 import classNames from 'classnames';
 import pokeball from '../../assets/images/Pokeball.svg';
+import userService from '../../utils/userService';
 
 
 export default function SignupPage(props) {
@@ -27,11 +28,26 @@ export default function SignupPage(props) {
    }, [props.active])
 
    function handleChange(e, changeState) {
+      e.preventDefault();
       changeState(e.target.value);
-      console.log('email', props.signupEmail);
-      console.log('name', props.signupName);
-      console.log('password', props.signupPassword);
-      console.log('password2', props.signupPassword2);
+   }
+
+   function isFormInvalid() {
+      return !(props.signupEmail && props.signupName && props.signupPassword && props.signupPassword2 && props.signupPassword === props.signupPassword2);
+   }
+
+   async function handleSubmit(e) {
+      e.preventDefault();
+      try {
+         await userService.signup(this.state);
+         // Let <App> know a user has signed up!
+         props.handleSignupOrLogin();
+         // Successfully signed up - show GamePage
+         props.history.push('/');
+       } catch (err) {
+         // Invalid user data (probably duplicate email)
+         props.updateMessage(err.message);
+       }
    }
 
    return(
@@ -49,7 +65,7 @@ export default function SignupPage(props) {
             </h1>
             <form 
                className="form"
-               onSubmit={props.handleSubmit}
+               onSubmit={handleSubmit}
             >
                <table 
                className="form-input-container"
@@ -69,7 +85,7 @@ export default function SignupPage(props) {
                         <td className="min">Name:</td>
                         <td><input 
                            type="text" 
-                           placeholder="Name" 
+                           placeholder="Name*" 
                            value={props.signupName} 
                            name="name" 
                            onChange={ (e) => handleChange(e, props.handleNameChange)}
@@ -97,7 +113,14 @@ export default function SignupPage(props) {
                      </tr>
                   </tbody>
                </table>
-               <button className={styles.submit}>
+               <button 
+                  className={classNames({
+                     [styles.submit]: true,
+                     [styles.submitEnabled]: !isFormInvalid(),
+                     })
+                  }
+                  disabled={isFormInvalid()}
+               >
                   <img 
                   className="pokeball"
                   src={pokeball}

@@ -5,12 +5,14 @@ import './Audio.css';
 
 
 
-const Sound = ({ 
+function Sound ({ 
   url = null, 
   mute, 
   handleMute,
-  volume, 
-}) => {
+  volume,
+  autoplay,
+  loop,
+}) {
    
   const audioRef = useRef(null)
    
@@ -21,9 +23,17 @@ const Sound = ({
    
    useEffect(() => {
          mute ? audioRef.current.pause() : audioRef.current.play();
+         return;
       },
       [mute]
    );
+
+   useEffect(() => {
+    audioRef.current.volume = volume;
+    audioRef.current.autoplay = autoplay;
+    audioRef.current.loop = loop;
+    return;
+  }, []);
    
 
   return (
@@ -31,12 +41,9 @@ const Sound = ({
       <audio 
         ref={audioRef} 
         src={url} 
-        autoPlay
-        loop
-        volume={volume}
       />
       <button className="soundIcon" onClick={() => toggle()}>
-        <img src={mute ? muteIcon : soundIcon} />
+        <img src={mute ? muteIcon : soundIcon} alt="" />
       </button>
     </div>
   );

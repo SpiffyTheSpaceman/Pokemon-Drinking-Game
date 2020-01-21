@@ -105,3 +105,13 @@ td.min {
   vertical-align: middle;
   margin-right: 15px;
 }
+
+.button {
+  font-family: 'Press Start 2P', cursive;
+  padding: 10px;
+  border: none;
+  background: none;
+  display: block;
+  background-color: rgb(47, 118, 184);
+  border-radius: 10px;
+}

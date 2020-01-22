@@ -8,6 +8,7 @@ import Bubbles from '../../components/Bubbles/Bubbles';
 import Audio from '../../components/Audio/Audio';
 import AudioUrl from '../../assets/audio/Pokemon8Bit.mp3';
 import Pikachu from '../../assets/images/drunkPikachu.png';
+import pokeball from '../../assets/images/Pokeball.svg';
 
 
 export default function Home(props) {
@@ -66,7 +67,12 @@ export default function Home(props) {
             <button 
             className="home-button"
             onClick={() => handleClick('/pokemon-game')}>
-               Start a Game Session!
+               <img 
+                  className="pokeball"
+                  src={pokeball}
+                  alt='pokeball'
+               />
+               <span>Start a Game Session!</span>
             </button>
          </div>
       </>

@@ -1,9 +1,22 @@
 const express = require('express');
+
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 
 const app = express();
+
+//If we weren't using socket, we wouldn't need to do this and could just stick with using app, but for some reason, socket requires a http, NOTE: look into later? 
+const server = require('http').Server(app);
+// Method 1 (they do the same thing, just reorganized into another io.js file)
+const io = require('./io');
+io.attach(server);
+
+// Method 2
+// var io = require('socket.io')(server);
+// io.on('connection', function (socket) {
+//   console.log('Client connected to socket.io!');
+// });
 
 require('dotenv').config();
 require('./config/database');
@@ -30,6 +43,20 @@ app.get('/*', function(req, res) {
 
 const port = process.env.PORT || 3001;
 
-app.listen(port, function() {
-   console.log(`Express app running on port ${port}`)
-});
+// app is the express project, but the http is required for socket, so use server.listen instead. It will also connect the express app to the port as well so don't worry about it.
+// app.listen(port, function() {
+//    console.log(`Express app running on port ${port}`);
+// });
+
+server.listen(port);
+
+
+// const server = require('http').Server(app);
+// // Method 1 (they do the same thing, just reorganized into another io.js file)
+// const io = require('./io');
+// io.attach(server);
+// // Method 2
+// // var io = require('socket.io')(server);
+// // io.on('connection', function (socket) {
+// //   console.log('Client connected to socket.io!');
+// // });

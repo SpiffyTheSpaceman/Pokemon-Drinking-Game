@@ -90,7 +90,7 @@ export default function SignupPage(props) {
                      <tr>
                         <td className="min">Email:</td>
                         <td><input 
-                           type="text" 
+                           type="email" 
                            placeholder="Email*" 
                            value={props.signupEmail} 
                            name="email" 

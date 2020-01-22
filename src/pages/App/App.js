@@ -10,7 +10,6 @@ import './App.css';
 import './reflex.css';
 
 function App() {
-
   //NOTE: adding a user to state from a token in localStorage is not an asynchronous process
   const [user, setUser] = useState(userService.getUser);
 

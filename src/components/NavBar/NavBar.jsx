@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './NavBar.css';
 
 export default function NavBar(props) {
@@ -9,27 +9,33 @@ export default function NavBar(props) {
       <div className="nav-welcome" >
          Welcome {props.user.name}!
       </div>
-      <Link to='/pokemon-game' className="nav-button" >
+      <NavLink to='/' exact className="nav-button" activeClassName="selected" >
+         Home
+      </NavLink>
+      <NavLink to='/pokemon-game' exact className="nav-button" activeClassName="selected">
          New Game
-      </Link>
-      <Link to='/high-scores' className="nav-button" >
+      </NavLink>
+      <NavLink to='/high-scores' exact className="nav-button" activeClassName="selected">
          High Scores
-      </Link>
-      <Link to='/my-games' className="nav-button" >
+      </NavLink>
+      <NavLink to='/my-games' exact className="nav-button" activeClassName="selected">
          My Games
-      </Link>
+      </NavLink>
       <div className="nav-button" onClick={props.handleLogout}>
          Log Out
       </div>
       </>
       :
       <>
-      <Link to='/pokemon-game' className="nav-button" >
+      <NavLink to='/' className="nav-button" activeClassName="selected">
+         Home
+      </NavLink>
+      <NavLink to='/pokemon-game' className="nav-button" activeClassName="selected">
          New Game
-      </Link>
-      <Link to='/high-scores' className="nav-button" >
+      </NavLink>
+      <NavLink to='/high-scores' className="nav-button" activeClassName="selected">
          High Scores
-      </Link>
+      </NavLink>
       <div className="nav-button" onClick={() => props.handleSigninClick()}>
          Sign In
       </div>

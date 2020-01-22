@@ -89,7 +89,7 @@ export default function SigninPage(props) {
                      <tr>
                         <td className="min">Email:</td>
                         <td><input 
-                           type="text" 
+                           type="email" 
                            placeholder="Email" 
                            value={props.signinEmail} 
                            name="email" 

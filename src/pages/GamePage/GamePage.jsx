@@ -1,8 +1,9 @@
 import React from 'react';
+import socket from '../../utils/io';
 import './GamePage.css';
 
-export default function Nik() {
-
+export default function GamePage() {
+   console.log(socket);
    const coatFill = 'blue'
    const coatTrim = '#000'
    return(

@@ -25,7 +25,11 @@ export default function Home(props) {
       //Only set mute if it is not muted already.
       !mute && handleMute();
       setTimeout(function() { 
-         props.history.push(path);
+         //NOTE: you can pass props passed in the state prop of "to" inside the component via props.location.state.propName
+         props.history.push({
+            pathname: path,
+            state: { keyCode: null }
+         });
          setChangingPage(false);
       }, 1000);
    }

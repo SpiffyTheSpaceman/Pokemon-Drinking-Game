@@ -3,7 +3,8 @@ import {NavLink} from 'react-router-dom';
 import './NavBar.css';
 
 export default function NavBar(props) {
-
+   //NOTE: you can pass props passed in the state prop of "to" inside the component via props.location.state.propName
+   //NOTE: navlink exact property is to make sure that the route has to be exact for it to be considered "active"
    const userNav = props.user ? 
       <>
       <div className="nav-welcome" >
@@ -12,7 +13,14 @@ export default function NavBar(props) {
       <NavLink to='/' exact className="nav-button" activeClassName="selected" >
          Home
       </NavLink>
-      <NavLink to='/pokemon-game' exact className="nav-button" activeClassName="selected">
+      <NavLink 
+         to={{
+            pathname: '/pokemon-game',
+            state: { keyCode: null },
+         }}
+         exact
+         className="nav-button" 
+         activeClassName="selected"> exact className="nav-button" activeClassName="selected">
          New Game
       </NavLink>
       <NavLink to='/high-scores' exact className="nav-button" activeClassName="selected">
@@ -27,13 +35,20 @@ export default function NavBar(props) {
       </>
       :
       <>
-      <NavLink to='/' className="nav-button" activeClassName="selected">
+      <NavLink to='/' exact className="nav-button" activeClassName="selected">
          Home
       </NavLink>
-      <NavLink to='/pokemon-game' className="nav-button" activeClassName="selected">
+      <NavLink 
+         to={{
+            pathname: '/pokemon-game',
+            state: { keyCode: null },
+         }}
+         exact
+         className="nav-button" 
+         activeClassName="selected">
          New Game
       </NavLink>
-      <NavLink to='/high-scores' className="nav-button" activeClassName="selected">
+      <NavLink to='/high-scores' exact className="nav-button" activeClassName="selected">
          High Scores
       </NavLink>
       <div className="nav-button" onClick={() => props.handleSigninClick()}>

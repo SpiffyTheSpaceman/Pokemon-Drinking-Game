@@ -6,6 +6,7 @@ export default {
    create,
    addPlayer,
    deletePlayer,
+   updatePlayer,
  };
 
 const BASE_URL = '/api/games/';
@@ -78,6 +79,20 @@ function create(payload) {
    })
  }
 
+ function updatePlayer(payload) {
+  return fetch(BASE_URL + 'pokemon-game/' + payload.id + '/players/' + payload.index, {
+    method: 'PUT',
+    headers: new Headers({'Content-Type': 'application/json'
+  }),
+    body: JSON.stringify(payload.player)
+  }) //post triggers our route, then our controller (storing the above data as req.method, req.headers, req.body). We coded our controller to res.json(game) so that it will respond with the game object into our res object or an error.
+  .then(res => {
+     // if controller did not respond with an error, return the game object (which is our res).
+    if (res.ok) return res.json();
+    // Probably a duplicate game name, return error
+    throw new Error('Hmm error.');
+  })
+}
 
 //NOTE HOW TO USE IN THE COMPONENT: 
 //const game = await gamesService.index(); OR

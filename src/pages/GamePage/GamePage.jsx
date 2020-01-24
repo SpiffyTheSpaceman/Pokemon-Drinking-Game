@@ -65,11 +65,18 @@ export default function GamePage(props) {
       setPlayers(playersCopy);
    }
 
-   function handleMovePlayer(value) {
+   async function handleMovePlayer(value) {
       if (players.length === 0) return;
       let playersCopy = [...players];
       playersCopy[turn].squareNum += value;
       setPlayers(playersCopy);
+      const payload = {
+         index: turn,
+         id: gameData._id,
+         player: playersCopy[turn],
+      };
+      const newGameData = await gameService.updatePlayer(payload);
+      setGameData(newGameData);
       if (turn >= players.length - 1) {
          setTurn(0);
          return;

@@ -75,13 +75,13 @@ export default function GamePage(props) {
          id: gameData._id,
          player: playersCopy[turn],
       };
-      const newGameData = await gameService.updatePlayer(payload);
-      setGameData(newGameData);
       if (turn >= players.length - 1) {
          setTurn(0);
          return;
       }
       setTurn(turn + 1);
+      const newGameData = await gameService.updatePlayer(payload);
+      setGameData(newGameData);
    }
 
    function createMoveButtons() {

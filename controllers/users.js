@@ -17,6 +17,7 @@ module.exports = {
    try {
      await user.save();
      //wait for the user to save and then if successful, create a token using that user.
+     //NOTE: after user.save() completes, the user object should now have the user._id property.
      const token = createJWT(user);
      // NOTE: The signup method is transporting the token string to the client within an object (assigned to a key named token)
      // Respond to the client with said object.

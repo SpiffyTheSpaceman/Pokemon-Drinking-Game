@@ -79,7 +79,6 @@ function App() {
         <Route exact path='/' render={(props) => 
           <HomePage 
             {...props}
-            user={user}
           />
         } />
         <Route exact path='/pokemon-game' render={(props) => 

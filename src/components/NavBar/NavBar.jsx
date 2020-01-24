@@ -20,7 +20,8 @@ export default function NavBar(props) {
          }}
          exact
          className="nav-button" 
-         activeClassName="selected"> exact className="nav-button" activeClassName="selected">
+         activeClassName="selected"
+         >
          New Game
       </NavLink>
       <NavLink to='/high-scores' exact className="nav-button" activeClassName="selected">

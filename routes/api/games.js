@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const scoresCtrl = require('../../controllers/scores');
-const requireAuth = require('../../config/auth');
+const gamesCtrl = require('../../controllers/games');
+const addReqUserFromToken = require('../../config/auth');
 
-router.get('/', scoresCtrl.highScores);
+router.get('/my-games', gamesCtrl.myGames);
 
 /*---------- Protected Routes ----------*/
 // Process the token for only the routes below
-// router.use will run the requireAuth function first which will add the user to req to have the req.user property.
-router.use(requireAuth);
-router.post('/', checkAuth, scoresCtrl.create);
+// router.use will run the addReqUserFromToken function first which will add the user to req to have the req.user property.
+router.use(addReqUserFromToken);
+router.post('/pokemon-game', gamesCtrl.create);
 
 module.exports = router;
 

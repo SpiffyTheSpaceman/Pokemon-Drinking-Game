@@ -8,11 +8,18 @@ const playerSchema = new Schema({
 })
 
 const gameSchema = new Schema({
-  keyCode: String,
+  keyCode: {
+    type: String, 
+    required: true, 
+    lowercase: true, 
+    unique: true
+  },
   players: [playerSchema],
-  owner: String,
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   board: String,
-  finalSquare: Number
 }, {
   timestamps: true
 });

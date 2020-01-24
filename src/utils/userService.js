@@ -16,7 +16,7 @@ function signup(user) {
     body: JSON.stringify(user)
   }) //post triggers our users route, then our users controller (storing the above data as req.method, req.headers, req.body) which responds with the JSON object that stores the JWT which also has the user data under the object key "token"
   .then(res => {
-     // if controller did not respond with an error.
+     // if controller did not respond with an error. It is based on the status returned;
     if (res.ok) return res.json();
     // Probably a duplicate email
     throw new Error('Email already taken!');

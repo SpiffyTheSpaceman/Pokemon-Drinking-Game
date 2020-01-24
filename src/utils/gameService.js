@@ -40,7 +40,7 @@ function create(payload) {
  }
 
 
-//  function update(payload) {
+//  function updatePlayers(payload) {
 //    const newGame = {
 //       keyCode: payload.keyCode,
 //       players: [],

@@ -12,14 +12,14 @@ export default function GamePage(props) {
 
 
    const [active, setActive] = useState(
-      (!!props.location.state && !!props.location.state.keyCode) ? false : true
+      (!!props.location.state && !!props.location.state.gameData) ? false : true
          );
    const [keyCode, setKeyCode] = useState(
-      (!!props.location.state && !!props.location.state.keyCode) ? props.location.state.keyCode : ''
+      (!!props.location.state && !!props.location.state.gameData) ? props.location.state.gameData.keyCode : ''
       );
    // if props.location.state.keyCode exists, the gamedata initial value should be a get request.
-   const [gameData, setGameData] = useState({});
-   const [players, setPlayers] = useState([]);
+   const [gameData, setGameData] = useState((!!props.location.state && !!props.location.state.gameData) ? props.location.state.gameData : {});
+   const [players, setPlayers] = useState((!!props.location.state && !!props.location.state.gameData) ? props.location.state.gameData.players : []);
    const [turn, setTurn] = useState(0)
 
    function handleActivate() {

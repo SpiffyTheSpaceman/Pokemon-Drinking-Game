@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {NavLink} from 'react-router-dom';
 import gameService from '../../utils/gameService';
 import './MyGamesPage.css';
 
@@ -19,10 +20,18 @@ export default function() {
       <div className="MyGamesPage">
          {myGames.map( (game, index) => {
             return (
-               <div key={index} className="myGames-card">
-                  <p>Game Name: {game.keyCode}</p>
-                  <p># Players: {game.players.length}</p>
-               </div>
+                  <NavLink 
+                     to={{
+                        pathname: '/pokemon-game',
+                        state: { gameData: game },
+                     }}
+                     exact
+                     className="myGames-card" 
+                     key={index}
+                     >
+                     <p>Game Name: {game.keyCode}</p>
+                     <p># Players: {game.players.length}</p>
+                  </NavLink>
             )
          } )}
       </div>

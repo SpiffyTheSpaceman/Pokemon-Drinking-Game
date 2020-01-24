@@ -1,3 +1,37 @@
-.suit {
-   stroke-miterlimit:10
+.PlayerCardContainer {
+   display: flex;
+   width: 200px;
+   flex-direction: column;
+   justify-content: center;
+   align-content: center;
+   align-items: center;
+   position: fixed;
+   top: 15vh;
+   left: 30px;
+}
+
+.addForm {
+   color: rgb(254, 202, 48);
+   background-color: rgb(47, 118, 184);
+   margin: 0;
+   padding: 0;
+   height: 40px;
+   width: 100%;
+   font-size: 30px;
+   text-align: center;
+   border-radius: 5px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   
+}
+
+.addForm:hover {
+   cursor: pointer;
+}
+
+.addForm:disabled {
+   opacity: 0.5;
+   cursor: not-allowed;
 }

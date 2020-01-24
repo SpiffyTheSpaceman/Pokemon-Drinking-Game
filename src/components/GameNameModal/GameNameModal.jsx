@@ -51,6 +51,7 @@ export default function GameNameModal(props) {
          // Update to call login instead of signup
          // Note: since gameService.create returns a promise, we can use await.
          const gameData = await gameService.create(payload);
+         // console.log('gamedata', gameData)
          props.setGameData(gameData);
          props.handleActivate();
 

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import classNames from 'classnames';
 import './PlayerCard.css';
 
 
@@ -16,6 +17,11 @@ export default function PlayerCard(props) {
       props.handleCancel();
    }
 
+   function handleRemovePlayer(e) {
+      e.preventDefault();
+      props.handleRemovePlayer();
+   }
+
    async function handleSubmit(e) {
       e.preventDefault();
       props.handleAddPlayer(initials)
@@ -24,8 +30,15 @@ export default function PlayerCard(props) {
    return (
       <>
       {props.player.initials ? 
-         <div class="playerCard">
-            {props.player.initials}
+         <div
+         className={classNames({
+            playerCard: true,
+            currentTurn: props.turn === props.index,
+         })}
+         >
+            {props.player.initials}<br/>
+             Square #: {props.player.squareNum}
+            <input type="button" onClick={handleRemovePlayer} value="x"/>
          </div>
          :
          <form onSubmit={handleSubmit} class="playerCard">

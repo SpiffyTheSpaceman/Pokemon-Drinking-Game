@@ -2,16 +2,18 @@
 import tokenService from './tokenService';
 
 export default {
-   index,
+   getMyGames,
    create,
    addPlayer,
+   deletePlayer,
  };
 
 const BASE_URL = '/api/games/';
 
-function index() {
+function getMyGames() {
    const options = {
      method: 'GET',
+     headers: new Headers({'Authorization': 'Bearer ' + tokenService.getToken()}),
    };
    return fetch(BASE_URL + 'my-games', options).then(res => res.json());
  }
@@ -58,6 +60,21 @@ function create(payload) {
      if (res.ok) return res.json();
      // Probably a duplicate game name, return error
      throw new Error('Game Name already taken!');
+   })
+ }
+
+ function deletePlayer(payload) {
+   return fetch(BASE_URL + 'pokemon-game/players', {
+     method: 'DELETE',
+     headers: new Headers({'Content-Type': 'application/json'
+   }),
+     body: JSON.stringify(payload)
+   }) //post triggers our route, then our controller (storing the above data as req.method, req.headers, req.body). We coded our controller to res.json(game) so that it will respond with the game object into our res object or an error.
+   .then(res => {
+      // if controller did not respond with an error, return the game object (which is our res).
+     if (res.ok) return res.json();
+     // Probably a duplicate game name, return error
+     throw new Error('Hmm error.');
    })
  }
 

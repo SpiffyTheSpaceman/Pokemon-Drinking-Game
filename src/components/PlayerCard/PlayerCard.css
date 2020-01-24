@@ -5,17 +5,23 @@
    justify-content: center;
    align-items: center;
    background-color: rgb(127, 3, 8);
-   min-height: 50px;
+   min-height: 56px;
    text-align: center;
    border-radius: 10px;
    padding: 5px;
    color: rgb(254, 202, 48);
    margin-bottom: 10px;
+   border: 3px solid transparent;
 }
 
 .playerCard input {
    text-align: center;
    color: black;
+   margin-top: 10px;
+}
+
+.playerCard.currentTurn {
+   border: 3px solid rgb(254, 202, 48);
 }
 
 .playerCard > input {

@@ -2,7 +2,7 @@ const Game = require('../models/game');
 
 module.exports = {
    create,
-   // delete
+   delete: deletePlayer,
 }
 
 async function create(req, res) {
@@ -10,6 +10,19 @@ async function create(req, res) {
    try {
       const game = await Game.findById(gameId);
       game.players.push(req.body);
+      await game.save();
+      res.json(game);
+   }
+   catch(err) {
+      res.status(400).json(err);
+   }
+}
+
+async function deletePlayer(req, res) {
+
+   try {
+      const game = await Game.findById(req.body.gameId);
+      game.players.splice(req.body.index, 1);
       await game.save();
       res.json(game);
    }

@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import styles from './SigninPage.module.css';
+import styles from './GameNameModal.module.css';
 import classNames from 'classnames';
 import pokeball from '../../assets/images/Pokeball.svg';
-import userService from '../../utils/userService';
+import gameService from '../../utils/gameService';
 
 
-export default function SigninPage(props) {
+export default function GameNameModal(props) {
 
    
    const [modalTransitioning, setModalTransitioning] = useState(false);
@@ -37,33 +37,31 @@ export default function SigninPage(props) {
    }
 
    function isFormInvalid() {
-      return !(props.signinEmail && props.signinPassword);
+      return !(props.keyCode);
    }
 
    async function handleSubmit(e) {
       e.preventDefault();
+      if (!props.active) return;
       const payload = {
-         email: props.signinEmail,
-         password: props.signinPassword,
+         keyCode: props.keyCode,
+         board: 'pokemon',
       }
-      setErrorMessage('');
       try {
-        // Update to call login instead of signup
-        // Note: since userService.login returns a promise, we can use await.
-        await userService.login(payload);
-        
-         // Successfully signed up - deactivate modal.
+         // Update to call login instead of signup
+         // Note: since gameService.create returns a promise, we can use await.
+         const gameData = await gameService.create(payload);
+         props.setGameData(gameData);
          props.handleActivate();
-         // Reset the states for all the fields since successful login.
-         props.handleEmailChange('');
-         props.handlePasswordChange('');
-         // All this does is in <App> it sets the user state by getting it via the userService.get function which will retrieve the token that was just set by sign up
-         props.handleSignupOrLogin();
-      } catch (err) {
-         // err is passed to us by userService.login when it throws error.
-        setErrorMessage(err.message);
-      }
+
+       } catch (err) {
+          // err is passed to us by gameService.create when it throws error.
+         setErrorMessage(err.message);
+         return;
+       }
+
    }
+
 
    return(
       <div 
@@ -76,10 +74,11 @@ export default function SigninPage(props) {
             [styles.modalOpen]: modalOpen,
          })} >
             <h1>
-               Pokemon Trainer<br />Sign In
+               Game Name
             </h1>
             <form 
             className="form"
+            style={{justifyContent: 'center'}}
             onSubmit={handleSubmit}
             >
                <table 
@@ -87,27 +86,16 @@ export default function SigninPage(props) {
                >
                   <tbody>
                      <tr>
-                        <td className="min">Email:</td>
                         <td><input 
-                           type="email" 
-                           placeholder="Email" 
-                           value={props.signinEmail} 
-                           name="email" 
-                           onChange={ (e) => handleChange(e, props.handleEmailChange)}
-                        /></td>
-                     </tr>
-                     <tr>
-                        <td className="min">Password:</td>
-                        <td><input 
-                           type="password" 
-                           placeholder="Password" 
-                           value={props.signinPassword} 
-                           name="password" 
-                           onChange={ (e) => handleChange(e, props.handlePasswordChange)}
+                           type="text" 
+                           placeholder="Game Name" 
+                           value={props.keyCode} 
+                           name="gameName" 
+                           onChange={ (e) => handleChange(e, props.handleKeyCodeChange)}
                         /></td>
                      </tr>
                      <tr className={styles.error}>
-                        <td colSpan="2">{errorMessage}</td>
+                        <td>{errorMessage}</td>
                      </tr>
                   </tbody>
                </table>
@@ -133,7 +121,6 @@ export default function SigninPage(props) {
                [styles.modalBackground]: true,
                [styles.backgroundActive]: props.active,
             })}
-            onClick={() => props.handleActivate()}
             >
          </div>
       </div>

@@ -8,7 +8,10 @@ import userService from '../../utils/userService';
 export default function SignupPage(props) {
    
    const [modalTransitioning, setModalTransitioning] = useState(false);
-   const [modalOpen, setModalOpen] = useState(false);   
+   const [modalOpen, setModalOpen] = useState(false); 
+
+   const [errorMessage, setErrorMessage] = useState('');
+   
 
    useEffect(function() {
       if (props.active) {
@@ -38,15 +41,28 @@ export default function SignupPage(props) {
 
    async function handleSubmit(e) {
       e.preventDefault();
+      const payload = {
+         name: props.signupName,
+         email: props.signupEmail,
+         password: props.signupPassword,
+      }
+      setErrorMessage('');
       try {
-         await userService.signup(this.state);
-         // Let <App> know a user has signed up!
+         //Note: since userService.signup returns a promise, we can use await.
+         await userService.signup(payload);
+         // Successfully signed up - deactivate modal.
+         props.handleActivate();
+         // Reset the states for all the fields since successful login.
+         props.handleEmailChange('');
+         props.handleNameChange('');
+         props.handlePasswordChange('');
+         props.handlePassword2Change('');
+         // All this does is in <App> it sets the user state by getting it via the userService.get function which will retrieve the token that was just set by sign up
          props.handleSignupOrLogin();
-         // Successfully signed up - show GamePage
-         props.history.push('/');
        } catch (err) {
          // Invalid user data (probably duplicate email)
-         props.updateMessage(err.message);
+         // err is passed to us by userService.signup when it throws error.
+         setErrorMessage(err.message);
        }
    }
 
@@ -74,7 +90,7 @@ export default function SignupPage(props) {
                      <tr>
                         <td className="min">Email:</td>
                         <td><input 
-                           type="text" 
+                           type="email" 
                            placeholder="Email*" 
                            value={props.signupEmail} 
                            name="email" 
@@ -111,6 +127,9 @@ export default function SignupPage(props) {
                            onChange={ (e) => handleChange(e, props.handlePassword2Change)}
                         /></td>
                      </tr>
+                     <tr className={styles.error}>
+                        <td colSpan="2">{errorMessage}</td>
+                     </tr>
                   </tbody>
                </table>
                <button 
@@ -136,7 +155,7 @@ export default function SignupPage(props) {
                [styles.modalBackground]: true,
                [styles.backgroundActive]: props.active,
             })}
-            onClick={() => props.handleBackgroundClick()}
+            onClick={() => props.handleActivate()}
             >
          </div>
       </div>

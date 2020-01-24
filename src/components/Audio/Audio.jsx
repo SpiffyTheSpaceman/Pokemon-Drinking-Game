@@ -28,6 +28,7 @@ function Sound ({
       [mute]
    );
 
+   //Component did mount, set the attributes here, for some reason, in react, we can't set these attributes directly on the audio react element. 
    useEffect(() => {
     audioRef.current.volume = volume;
     audioRef.current.autoplay = autoplay;

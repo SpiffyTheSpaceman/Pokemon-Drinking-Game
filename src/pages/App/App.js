@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
-import { Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import GamePage from '../GamePage/GamePage';
 import SignupPage from '../SignupPage/SignupPage';
 import SigninPage from '../SigninPage/SigninPage';
+import NavBar from '../../components/NavBar/NavBar';
+import userService from '../../utils/userService';
 import './App.css';
 import './reflex.css';
 
 function App() {
+  //NOTE: adding a user to state from a token in localStorage is not an asynchronous process
+  const [user, setUser] = useState(userService.getUser);
 
   const [signupEmail, setSignupEmail] = useState('');
   const [signupName, setSignupName] = useState('');
@@ -28,17 +32,26 @@ function App() {
     setSigninActive(!signinActive);
   }
 
+  function handleLogout() {
+    userService.logout();
+    setUser( null );
+  }
+
+  function handleSignupOrLogin() {
+    setUser(userService.getUser);
+  }
+
   return (
     <div className="App">
-      <header className="nav-header">
-        <nav className="nav-container">
-          <div className="nav-button" onClick={() => handleSigninClick()}>
-            Sign In
-          </div>
-          <div className="nav-button" onClick={() => handleSignupClick()}>
-            Sign Up
-          </div>
-        </nav>
+      <header 
+      className="nav-header"
+      >
+        <NavBar 
+          user={user}
+          handleSignupClick={handleSignupClick} 
+          handleSigninClick={handleSigninClick}
+          handleLogout={handleLogout}
+          />
       </header>
       <SigninPage 
       signinEmail={signinEmail}
@@ -46,7 +59,8 @@ function App() {
       active={signinActive}
       handleEmailChange={setSigninEmail}
       handlePasswordChange={setSigninPassword}
-      handleBackgroundClick={handleSigninClick}
+      handleActivate={handleSigninClick}
+      handleSignupOrLogin={handleSignupOrLogin}
       />
       <SignupPage
       signupEmail={signupEmail}
@@ -54,11 +68,12 @@ function App() {
       signupPassword={signupPassword}
       signupPassword2={signupPassword2}
       active={signupActive}
-      handleBackgroundClick={handleSignupClick}
+      handleActivate={handleSignupClick}
       handleEmailChange={setSignupEmail}
       handleNameChange={setSignupName}
       handlePasswordChange={setSignupPassword}
       handlePassword2Change={setSignupPassword2}
+      handleSignupOrLogin={handleSignupOrLogin}
       />
       <Switch>
         <Route exact path='/' render={(props) => 

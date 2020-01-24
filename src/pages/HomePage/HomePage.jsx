@@ -8,6 +8,7 @@ import Bubbles from '../../components/Bubbles/Bubbles';
 import Audio from '../../components/Audio/Audio';
 import AudioUrl from '../../assets/audio/Pokemon8Bit.mp3';
 import Pikachu from '../../assets/images/drunkPikachu.png';
+import pokeball from '../../assets/images/Pokeball.svg';
 
 
 export default function Home(props) {
@@ -24,7 +25,11 @@ export default function Home(props) {
       //Only set mute if it is not muted already.
       !mute && handleMute();
       setTimeout(function() { 
-         props.history.push(path);
+         //NOTE: you can pass props passed in the state prop of "to" inside the component via props.location.state.propName
+         props.history.push({
+            pathname: path,
+            state: { keyCode: null }
+         });
          setChangingPage(false);
       }, 1000);
    }
@@ -47,6 +52,7 @@ export default function Home(props) {
                   src={Pikachu}
                   style={{ display: changingPage ? 'block' : 'none' }} 
                   draggable={false}
+                  alt="pikachu"
                />
             </div>
             <img src={Beer} className="beer" alt="" draggable={false} />
@@ -65,7 +71,12 @@ export default function Home(props) {
             <button 
             className="home-button"
             onClick={() => handleClick('/pokemon-game')}>
-               Start a Game Session!
+               <img 
+                  className="pokeball"
+                  src={pokeball}
+                  alt='pokeball'
+               />
+               <span>Start a Game Session!</span>
             </button>
          </div>
       </>

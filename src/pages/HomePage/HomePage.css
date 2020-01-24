@@ -69,10 +69,6 @@
    z-index: 1;
 }
 
-.home-button {
-   position: relative;
-   z-index: 3;
-}
 
 .pikachu {
    position: absolute;
@@ -89,4 +85,73 @@
 
 img {
    user-select: none;
+}
+
+.home-button {
+   position: relative;
+   z-index: 3;
+   font-family: 'Press Start 2P', cursive;
+   margin: 15px auto 0 auto;
+   padding: 10px;
+   border-width: 5px;
+   background: none;
+   height: 60px;
+   display: block;
+   background-color: rgb(254, 202, 48);
+   border-color: rgb(47, 118, 184);
+   border-radius: 10px;
+   opacity: 1;
+   transition: transform 0.3s ease;
+}
+
+.home-button:hover {
+   cursor: pointer;
+}
+
+.home-button:hover:active {
+   transform: scale(0.9);
+}
+
+/* .modalCardContainer .submit:hover {
+   cursor: not-allowed;
+} */
+
+
+.home-button > span {
+   vertical-align: middle;
+}
+
+
+
+/* Pokeball shake */
+.home-button:hover > img {
+   animation-name: ballshake;
+   animation-duration: 1000ms; /* or: Xms */
+   animation-iteration-count: infinite;
+   animation-direction: normal; /* or: normal */
+   animation-timing-function: linear; /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
+   animation-fill-mode: forwards; /* or: backwards, both, none */
+   animation-delay: 0; /* or: Xms */
+}
+
+@keyframes ballshake {
+   0%, 100% {
+      transform: rotateZ(0);
+   }
+   5% {
+      transform: rotateZ(-15deg);
+   }
+   15% {
+      transform: rotateZ(15deg);
+   }
+   25% {
+      transform: rotateZ(-15deg);
+   }
+   35% {
+      transform: rotateZ(15deg);
+   }
+   40% {
+      transform: rotateZ(0deg);
+   }
+
 }

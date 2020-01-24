@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import GamePage from '../GamePage/GamePage';
+import MyGamesPage from '../MyGamesPage/MyGamesPage';
 import SignupPage from '../SignupPage/SignupPage';
 import SigninPage from '../SigninPage/SigninPage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -83,6 +84,11 @@ function App() {
         } />
         <Route exact path='/pokemon-game' render={(props) => 
           <GamePage 
+            {...props}
+          />
+        } />
+        <Route exact path='/my-games' render={(props) => 
+          <MyGamesPage 
             {...props}
           />
         } />

@@ -1,0 +1,7 @@
+.DiceRoller {
+   color: rgb(254, 202, 48);
+}
+
+.diceContainer:hover {
+   cursor: pointer;
+}

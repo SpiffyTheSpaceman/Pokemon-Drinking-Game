@@ -1,0 +1,10 @@
+.GameBoard {
+   width: 80vh;
+   height: 80vh;
+   background-image: url('../../assets/images/pokemonBoard.png');
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: right;
+   margin-right: 20px;
+}
+

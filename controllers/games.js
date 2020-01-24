@@ -23,10 +23,10 @@ async function create(req, res) {
 }
 
 async function myGames(req, res) {
-   const scores = await Game.find({})
-     .sort({numGuesses: 1, seconds: 1})
+   const games = await Game.find({owner: req.user._id})
+     .sort({createdAt: -1})
      // Default to a limit of 20 high scores
      // if not specified in a query string
-     .limit(req.query.limit || 20);
-   res.json(scores);
+    console.log(games);
+   res.json(games);
  }

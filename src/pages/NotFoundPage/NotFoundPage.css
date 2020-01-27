@@ -1,0 +1,29 @@
+.NotFound {
+   margin: auto;
+   width: 100%;
+   margin-top: 15vh;
+   justify-content: center;
+   align-content: center;
+   align-items: center;
+   display: flex;
+   flex-direction: column;
+   color: white;
+   /* Using text shadow to simulate text oulines. */
+   text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+}
+
+.NotFoundBackground {
+   position: fixed;
+   top: 0;
+   z-index: -3;
+   width: 100%;
+   height: 100vh;
+   background-image: url('../../assets/images/NotFoundBackground.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+

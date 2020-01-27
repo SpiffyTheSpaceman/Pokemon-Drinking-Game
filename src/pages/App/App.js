@@ -5,6 +5,7 @@ import GamePage from '../GamePage/GamePage';
 import MyGamesPage from '../MyGamesPage/MyGamesPage';
 import SignupPage from '../SignupPage/SignupPage';
 import SigninPage from '../SigninPage/SigninPage';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import NavBar from '../../components/NavBar/NavBar';
 import userService from '../../utils/userService';
 import './App.css';
@@ -93,9 +94,17 @@ function App() {
           />
         } />
 
+
+        <Route render={(props) => 
+          <NotFoundPage 
+            {...props}
+          />
+        } />
+
       </Switch>
     </div>
   );
 }
 
 export default App;
+// Note: render= vs component= . render will only render in the component in the route once. So life cycle methods are run once and states are saved if someone navigates to and from the component. 
